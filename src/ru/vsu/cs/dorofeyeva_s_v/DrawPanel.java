@@ -13,13 +13,13 @@ public class DrawPanel extends JPanel implements ActionListener, KeyListener {
     private final int PANEL_HEIGHT;
     private final int TIMER_DELAY;
     private Timer timer;
-    private Timer blinkTimer; // Таймер для моргания
-    private Timer delayTimer; // Таймер для случайной задержки
+    private Timer blinkTimer;
+    private Timer delayTimer;
     private Timer pawTimer;
     private double eyeHeightCoeff = 1.0;
     private double pawHeightCoeff = 0.0;
-    private boolean isClosing = true; // Флаг, показывающий, закрывается ли глаз
-    private boolean isPawDown = false; // Флаг, показывающий, опускается ли лапа
+    private boolean isClosing = true;
+    private boolean isPawDown = false;
     private Cup cup;
     private Laptop laptop;
     private Vase vase;
@@ -33,7 +33,6 @@ public class DrawPanel extends JPanel implements ActionListener, KeyListener {
         timer = new Timer(timerDelay, this);
         timer.start();
 
-        // Таймер для моргания
         blinkTimer = new Timer(10, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -56,7 +55,6 @@ public class DrawPanel extends JPanel implements ActionListener, KeyListener {
             }
         });
 
-        // Таймер для случайной задержки между морганиями
         delayTimer = new Timer(0, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -80,7 +78,8 @@ public class DrawPanel extends JPanel implements ActionListener, KeyListener {
         this.cat = new Cat(350, 400 - 250, (int)(250 * 1.4), 250, eyeHeightCoeff, pawHeightCoeff);
         this.table = new Table(20, 400, 740, Color.GRAY);
 
-        startBlinking();
+        delayTimer.setInitialDelay(new Random().nextInt(5000));
+        delayTimer.start();
     }
 
     @Override
@@ -95,13 +94,13 @@ public class DrawPanel extends JPanel implements ActionListener, KeyListener {
 
     @Override
     public void actionPerformed(final ActionEvent e) {
-        repaint(); // Используем `timer` только для перерисовки
+        repaint();
     }
 
     @Override
     public void keyPressed(KeyEvent e) {
-        if (!pawTimer.isRunning()) { // Запускаем анимацию только если она не активна
-            isPawDown = true; // Убираем флаг, чтобы опускать лапу
+        if (!pawTimer.isRunning()) {
+            isPawDown = true;
             pawTimer.start();
         }
     }
@@ -131,16 +130,14 @@ public class DrawPanel extends JPanel implements ActionListener, KeyListener {
         repaint();
     }
 
-    // Останавливаем моргание и устанавливаем случайную задержку
     private void stopBlinkingAndSetRandomDelay() {
         blinkTimer.stop();
         Random random = new Random();
-        int delayTime = 1000 + random.nextInt(4000); // Случайная задержка от 1000 мс (1 секунда) до 5000 мс (5 секунд)
+        int delayTime = random.nextInt(5000);
         delayTimer.setDelay(delayTime);
         delayTimer.start();
     }
 
-    // Начинаем моргание после задержки
     private void startBlinking() {
         blinkTimer.start();
     }

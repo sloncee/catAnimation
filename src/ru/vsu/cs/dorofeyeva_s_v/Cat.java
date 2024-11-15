@@ -51,8 +51,6 @@ public class Cat {
         Graphics2D g = (Graphics2D) gr;
         g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         g.setStroke(new BasicStroke(2, BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND));
-        //g.setColor(Color.BLACK);
-        //g.draw(new Rectangle(x, y, width, height));
         Color cb = new Color(79, 41, 7);
         Color cr = new Color(247, 120, 54);
         Color co = new Color(227, 153, 10);
@@ -68,7 +66,7 @@ public class Cat {
         double bodyY = y + 0.07 * bodyHeight;
 
 
-        //левое ухо - основной цвет
+        //левое ухо
         g.setColor(c1);
         Path2D.Double leftEar = new Path2D.Double();
         leftEar.moveTo(bodyX + 0.258 * bodyWidth, bodyY + 0.005 * bodyHeight);
@@ -78,7 +76,7 @@ public class Cat {
         g.fill(leftEar);
 
 
-        //правое ухо - основной цвет
+        //правое ухо
         Path2D.Double rightEar = new Path2D.Double();
         rightEar.moveTo(bodyX + 0.2 * bodyWidth, bodyY + 0.037 * bodyHeight);
         rightEar.quadTo(bodyX + 0.046 * bodyWidth, bodyY - 0.143 * bodyHeight, bodyX + 0.091 * bodyWidth, bodyY + 0.093 * bodyHeight);
@@ -104,7 +102,7 @@ public class Cat {
         g.fill(rightEarInner);
 
 
-        //хвост - градиент
+        //хвост
         GradientPaint gradient1 = new GradientPaint(
                 (float)(bodyX + 0.91 * bodyWidth), (float)(bodyY + 0.919 * bodyHeight), c0,
                 (float)(bodyX + 1.2 * bodyWidth), (float)(bodyY + 0.757 * bodyHeight), c2
@@ -140,7 +138,7 @@ public class Cat {
         g.fill(movingPaw);
 
 
-        //тело - основной цвет
+        //тело
         g.setColor(c1);
         Path2D.Double body = new Path2D.Double();
         body.moveTo(bodyX + 0.295 * bodyWidth, bodyY + bodyHeight);
@@ -151,7 +149,7 @@ public class Cat {
         g.fill(body);
 
 
-        //верх левой лапы - градиент
+        //верх левой лапы
         GradientPaint gradient2 = new GradientPaint(
                 (float)(bodyX + 0.268 * bodyWidth), (float)(bodyY + 0.685 * bodyHeight), c1,
                 (float)(bodyX + 0.227 * bodyWidth), (float)(bodyY + 0.908 * bodyHeight), c2
@@ -167,7 +165,7 @@ public class Cat {
         g.fill(leftPawTop);
 
 
-        //низ левой лапы - самый светлый оттенок
+        //низ левой лапы
         g.setColor(c3);
         Path2D.Double leftPawBottom = new Path2D.Double();
         leftPawBottom.moveTo(bodyX + 0.175 * bodyWidth, bodyY + bodyHeight);
@@ -177,7 +175,7 @@ public class Cat {
         g.fill(leftPawBottom);
 
 
-        //задняя лапа - градиент
+        //задняя лапа
         GradientPaint gradient3 = new GradientPaint(
                 (float)(bodyX + 0.862 * bodyWidth), (float)(bodyY + 0.669 * bodyHeight), c1,
                 (float)(bodyX + 0.417 * bodyWidth), (float)(bodyY + 0.953 * bodyHeight), c2
@@ -214,7 +212,8 @@ public class Cat {
         whiskers.lineTo(bodyX + 0.447 * bodyWidth, bodyY + 0.33 * bodyHeight);
         g.draw(whiskers);
 
-        //носик
+
+        //нос
         g.setColor(cr);
         int[] noseXs = new int[]{(int)(bodyX + 0.168 * bodyWidth), (int)(bodyX + 0.15 * bodyWidth), (int)(bodyX + 0.186 * bodyWidth)};
         int[] noseYs = new int[]{(int)(bodyY + 0.266 * bodyHeight), (int)(bodyY + 0.24 * bodyHeight), (int)(bodyY + 0.24 * bodyHeight)};
