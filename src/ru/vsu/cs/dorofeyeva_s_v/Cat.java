@@ -118,22 +118,27 @@ public class Cat {
 
         //подвижная лапа
         g.setColor(c0);
-        double delta = bodyHeight * 0.15;
-        double k1 = delta * pawHeightCoeff;
-        double k2 = delta * pawHeightCoeff * 0.8;
-        double k3 = delta * pawHeightCoeff * 0.5;
+        double deltaY = bodyHeight * 0.15;
+        double deltaX = -bodyWidth * 0.07;
+        double k1 = deltaY * pawHeightCoeff;
+        double k2 = deltaY * pawHeightCoeff * 0.8;
+        double k3 = deltaY * pawHeightCoeff * 0.5;
+        double k4 = deltaX * pawHeightCoeff;
+        double k5 = deltaX * pawHeightCoeff * 0.8;
+        double k6 = deltaX * pawHeightCoeff * 0.5;
+
         Path2D.Double movingPaw = new Path2D.Double();
         movingPaw.moveTo(bodyX + 0.03 * bodyWidth, bodyY + 0.544 * bodyHeight);
-        movingPaw.quadTo(bodyX + 0.014 * bodyWidth, bodyY + 0.64 * bodyHeight + k3, bodyX - 0.024 * bodyWidth, bodyY + 0.66 * bodyHeight + k2);
+        movingPaw.quadTo(bodyX + 0.014 * bodyWidth + k6, bodyY + 0.64 * bodyHeight + k3, bodyX - 0.024 * bodyWidth + k5, bodyY + 0.66 * bodyHeight + k2);
 
-        movingPaw.lineTo(bodyX - 0.157 * bodyWidth, bodyY + 0.709 * bodyHeight + k1);
+        movingPaw.lineTo(bodyX - 0.157 * bodyWidth + k4, bodyY + 0.709 * bodyHeight + k1);
 
-        movingPaw.curveTo(bodyX - 0.236 * bodyWidth, bodyY + 0.685 * bodyHeight + k1, bodyX - 0.253 * bodyWidth, bodyY + 0.814 * bodyHeight + k1, bodyX - 0.193 * bodyWidth, bodyY + 0.781 * bodyHeight + k1);
-        movingPaw.curveTo(bodyX - 0.173 * bodyWidth, bodyY + 0.778 * bodyHeight + k1, bodyX - 0.153 * bodyWidth, bodyY + 0.803 * bodyHeight + k1, bodyX - 0.143 * bodyWidth, bodyY + 0.776 * bodyHeight + k1);
+        movingPaw.curveTo(bodyX - 0.236 * bodyWidth + k4, bodyY + 0.685 * bodyHeight + k1, bodyX - 0.253 * bodyWidth + k4, bodyY + 0.814 * bodyHeight + k1, bodyX - 0.193 * bodyWidth + k4, bodyY + 0.781 * bodyHeight + k1);
+        movingPaw.curveTo(bodyX - 0.173 * bodyWidth + k4, bodyY + 0.778 * bodyHeight + k1, bodyX - 0.153 * bodyWidth + k4, bodyY + 0.803 * bodyHeight + k1, bodyX - 0.143 * bodyWidth + k4, bodyY + 0.776 * bodyHeight + k1);
 
-        movingPaw.lineTo(bodyX - 0.004 * bodyWidth, bodyY + 0.79 * bodyHeight + k2);
+        movingPaw.lineTo(bodyX - 0.004 * bodyWidth + k5, bodyY + 0.79 * bodyHeight + k2);
 
-        movingPaw.quadTo(bodyX + 0.082 * bodyWidth, bodyY + 0.787 * bodyHeight + k3, bodyX + 0.15 * bodyWidth, bodyY + 0.646 * bodyHeight + k1);
+        movingPaw.quadTo(bodyX + 0.082 * bodyWidth + k6, bodyY + 0.787 * bodyHeight + k3, bodyX + 0.15 * bodyWidth, bodyY + 0.646 * bodyHeight + k1);
         movingPaw.closePath();
         g.fill(movingPaw);
 
